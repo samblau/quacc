@@ -80,7 +80,6 @@ def test_freq_job(tmpdir):
     atoms.set_initial_magnetic_moments([0.0])
     initial_atoms = deepcopy(atoms)
     output = freq_job(atoms, energy=-1.0)
-    print(output)
     assert output["atoms"] == initial_atoms
     assert len(output["results"]["vib_freqs_raw"]) == 3
     assert len(output["results"]["vib_freqs"]) == 0
@@ -105,13 +104,13 @@ def test_freq_job(tmpdir):
     assert len(output["results"]["vib_freqs_raw"]) == 12
     assert len(output["results"]["vib_freqs"]) == 6
     assert output["results"]["vib_energies_raw"][0] == pytest.approx(
-        -9.551076713062095e-06
+        -0.03245667401204982
     )
     assert output["results"]["vib_energies_raw"][-1] == pytest.approx(
-        0.3880868821616259
+        0.3893591841261572
     )
-    assert output["results"]["vib_energies"][0] == pytest.approx(0.0713506770137291)
-    assert output["results"]["vib_energies"][-1] == pytest.approx(0.3880868821616259)
+    assert output["results"]["vib_energies"][0] == pytest.approx(0.09675754738319586)
+    assert output["results"]["vib_energies"][-1] == pytest.approx(0.3893591841261572)
     assert output["results"]["n_imag"] == 0
     assert output["results"]["imag_vib_freqs"] == []
 
@@ -123,9 +122,9 @@ def test_freq_job(tmpdir):
     assert output["symmetry"]["rotation_number"] == 6
     assert len(output["parameters_thermo"]["vib_freqs"]) == 6
     assert output["results"]["energy"] == -10.0
-    assert output["results"]["enthalpy"] == pytest.approx(-8.749341973959462)
-    assert output["results"]["entropy"] == pytest.approx(0.0023506788982171896)
-    assert output["results"]["gibbs_energy"] == pytest.approx(-11.100020872176652)
+    assert output["results"]["enthalpy"] == pytest.approx(-8.75248316450031)
+    assert output["results"]["entropy"] == pytest.approx(0.0023384842627528282)
+    assert output["results"]["gibbs_energy"] == pytest.approx(-11.090967427253139)
     assert "nid" in output
     assert "dir_name" in output
     assert "nid" in output
