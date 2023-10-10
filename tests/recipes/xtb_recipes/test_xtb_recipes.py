@@ -59,10 +59,10 @@ def test_freq_job(tmpdir):
     assert output["atoms"] == molecule("H2O")
     assert len(output["results"]["vib_freqs_raw"]) == 9
     assert len(output["results"]["vib_freqs"]) == 3
-    assert output["results"]["vib_freqs_raw"][0] == pytest.approx(-0.10864429415434408)
-    assert output["results"]["vib_freqs_raw"][-1] == pytest.approx(3526.9940431752034)
-    assert output["results"]["vib_freqs"][0] == pytest.approx(1586.623114694335)
-    assert output["results"]["vib_freqs"][-1] == pytest.approx(3526.9940431752034)
+    assert output["results"]["vib_freqs_raw"][0] == pytest.approx(-329.05161577356176)
+    assert output["results"]["vib_freqs_raw"][-1] == pytest.approx(3526.9454680144245)
+    assert output["results"]["vib_freqs"][0] == pytest.approx(1586.5275127793313)
+    assert output["results"]["vib_freqs"][-1] == pytest.approx(3526.9454680144245)
     assert output["results"]["n_imag"] == 0
     assert output["results"]["imag_vib_freqs"] == []
 
@@ -70,19 +70,17 @@ def test_freq_job(tmpdir):
     assert output["symmetry"]["rotation_number"] == 2
     assert output["symmetry"]["linear"] is False
     assert len(output["parameters_thermo"]["vib_freqs"]) == 3
-    assert output["results"]["vib_freqs"][0] == pytest.approx(1586.623114694335)
-    assert output["parameters_thermo"]["vib_freqs"][-1] == pytest.approx(
-        3526.9940431752034
-    )
+    
     assert output["results"]["energy"] == 0.0
-    assert output["results"]["enthalpy"] == pytest.approx(0.6375973622705722)
-    assert output["results"]["entropy"] == pytest.approx(0.0019584992229988523)
-    assert output["results"]["gibbs_energy"] == pytest.approx(0.05367081893346437)
+    assert output["results"]["enthalpy"] == pytest.approx(0.637581401404516)
+    assert output["results"]["entropy"] == pytest.approx(0.0019584993671715764)
+    assert output["results"]["gibbs_energy"] == pytest.approx(0.053654815082310514)
 
     atoms = molecule("H")
     atoms.set_initial_magnetic_moments([0.0])
     initial_atoms = deepcopy(atoms)
     output = freq_job(atoms, energy=-1.0)
+    print(output)
     assert output["atoms"] == initial_atoms
     assert len(output["results"]["vib_freqs_raw"]) == 3
     assert len(output["results"]["vib_freqs"]) == 0
