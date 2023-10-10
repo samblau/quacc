@@ -134,26 +134,10 @@ def test_freq_job(tmpdir):
     atoms = molecule("C2H6")
     output = freq_job(atoms)
     print(output)
-    print(huh)
-    # assert output["atoms"] == molecule("H2O")
-    # assert len(output["results"]["vib_freqs_raw"]) == 9
-    # assert len(output["results"]["vib_freqs"]) == 3
-    # assert output["results"]["vib_freqs_raw"][0] == pytest.approx(-329.05161577356176)
-    # assert output["results"]["vib_freqs_raw"][-1] == pytest.approx(3526.9454680144245)
-    # assert output["results"]["vib_freqs"][0] == pytest.approx(1586.5275127793313)
-    # assert output["results"]["vib_freqs"][-1] == pytest.approx(3526.9454680144245)
-    # assert output["results"]["n_imag"] == 0
-    # assert output["results"]["imag_vib_freqs"] == []
 
-    # assert output["symmetry"]["point_group"] == "C2v"
-    # assert output["symmetry"]["rotation_number"] == 2
-    # assert output["symmetry"]["linear"] is False
-    # assert len(output["parameters_thermo"]["vib_freqs"]) == 3
-    
-    # assert output["results"]["energy"] == 0.0
-    # assert output["results"]["enthalpy"] == pytest.approx(0.637581401404516)
-    # assert output["results"]["entropy"] == pytest.approx(0.0019584993671715764)
-    # assert output["results"]["gibbs_energy"] == pytest.approx(0.053654815082310514)
+    output_solvent = freq_job(atoms, calc_swaps={"solvent":"octanol"})
+    print(output_solvent)
+    print(huh)
 
 
 def test_unique_workdir(tmpdir):
