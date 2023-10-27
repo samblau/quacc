@@ -120,6 +120,11 @@ def static_job(
         },
     }
 
+    if smd_solvent is not None:
+        if "," in smd_solvent:
+            defaults["qchem_input_params"]["smd_solvent"] = "custom"
+            defaults["qchem_input_params"]["custom_smd"] = smd_solvent
+
     return _base_job(
         atoms,
         charge,
@@ -225,6 +230,12 @@ def internal_relax_job(
             "max_scf_cycles": 200 if scf_algorithm.lower() == "gdm" else None,
         },
     }
+
+    if smd_solvent is not None:
+        if "," in smd_solvent:
+            defaults["qchem_input_params"]["smd_solvent"] = "custom"
+            defaults["qchem_input_params"]["custom_smd"] = smd_solvent
+
     return _base_job(
         atoms,
         charge,
@@ -330,6 +341,12 @@ def freq_job(
             "max_scf_cycles": 200 if scf_algorithm.lower() == "gdm" else None,
         },
     }
+
+    if smd_solvent is not None:
+        if "," in smd_solvent:
+            defaults["qchem_input_params"]["smd_solvent"] = "custom"
+            defaults["qchem_input_params"]["custom_smd"] = smd_solvent
+
     return _base_job(
         atoms,
         charge,
@@ -442,6 +459,12 @@ def relax_job(
             "max_scf_cycles": 200 if scf_algorithm.lower() == "gdm" else None,
         },
     }
+
+    if smd_solvent is not None:
+        if "," in smd_solvent:
+            qchem_defaults["qchem_input_params"]["smd_solvent"] = "custom"
+            qchem_defaults["qchem_input_params"]["custom_smd"] = smd_solvent
+
     opt_defaults = {
         "fmax": 0.01,
         "max_steps": 1000,
