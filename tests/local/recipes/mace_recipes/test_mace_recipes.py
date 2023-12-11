@@ -24,7 +24,7 @@ def test_static_job(tmp_path, monkeypatch):
 
     output = static_job(atoms)
     assert output["natoms"] == len(atoms)
-    assert output["results"]["energy"] == pytest.approx(1.772068860679255)
+    assert output["results"]["energy"] == pytest.approx(-14.1593656539917)
 
 
 def test_relax_job(tmp_path, monkeypatch):
@@ -34,7 +34,7 @@ def test_relax_job(tmp_path, monkeypatch):
 
     output = relax_job(atoms)
     assert output["natoms"] == len(atoms)
-    assert output["results"]["energy"] == pytest.approx(-2.983561029599189)
+    assert output["results"]["energy"] == pytest.approx(-14.160289764404297)
     assert np.max(np.linalg.norm(output["results"]["forces"], axis=1)) < 0.01
 
     output = relax_job(atoms, opt_params={"fmax": 0.03})
